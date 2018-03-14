@@ -6,13 +6,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class PlayerControllerTest {
-    private final PlayerService service = new PlayerService();
+    private final PlayerService service = mock(PlayerService.class);
     private final PlayerController controller = new PlayerController(service);
     private final MockMvc mvc = standaloneSetup(controller).build();
     private static final String VIEW = "playerslist";
@@ -26,6 +28,7 @@ public class PlayerControllerTest {
                 .andExpect(status().isOk()).andReturn();
 
         assertModelandViewName(result, VIEW, MODEL_KEY);
+        verify(service).findAll();
     }
 
     @Test
@@ -36,6 +39,8 @@ public class PlayerControllerTest {
                 .andExpect(status().isOk()).andReturn();
 
         assertModelandViewName(result, VIEW, MODEL_KEY);
+        verify(service).findAll();
+        verify(service).add(new Player("name", "surname"));
     }
 
     @Test
@@ -46,6 +51,8 @@ public class PlayerControllerTest {
                 .andExpect(status().isOk()).andReturn();
 
         assertModelandViewName(result, VIEW, MODEL_KEY);
+        verify(service).findAll();
+        verify(service).remove(new Player("name", "surname"));
     }
 
     private void assertModelandViewName(MvcResult result, String view, String modelKey) {

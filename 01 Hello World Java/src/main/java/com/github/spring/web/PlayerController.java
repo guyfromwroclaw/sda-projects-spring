@@ -25,15 +25,15 @@ public class PlayerController {
     }
 
     @PostMapping(value = "/add")
-    public String addPlayer(@RequestParam String name, @RequestParam String surname, Model model) {
-        service.add(name, surname);
+    public String addPlayer(Player player, Model model) {
+        service.add(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return VIEW;
     }
 
     @PostMapping(value = "remove")
-    public String removePlayer(@RequestParam String name, @RequestParam String surname, Model model) {
-        service.remove(name, surname);
+    public String removePlayer(Player player, Model model) {
+        service.remove(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return VIEW;
     }
