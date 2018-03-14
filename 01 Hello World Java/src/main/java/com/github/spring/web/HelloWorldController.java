@@ -1,4 +1,4 @@
-package com.kchmielewski.sda.java6.spring01java.web;
+package com.github.spring.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.kchmielewski.sda.java6.spring01java.config;
+package com.github.spring.config;
 
-import com.kchmielewski.sda.java6.spring01java.web.HelloWorldController;
+import com.github.spring.web.HelloWorldController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
