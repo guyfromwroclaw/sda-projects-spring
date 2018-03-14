@@ -12,7 +12,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class PlayerControllerTest {
-    private final PlayerController controller = new PlayerController();
+    private final PlayerService service = new PlayerService();
+    private final PlayerController controller = new PlayerController(service);
     private final MockMvc mvc = standaloneSetup(controller).build();
     private static final String VIEW = "playerslist";
     private static final String MODEL_KEY = "players";

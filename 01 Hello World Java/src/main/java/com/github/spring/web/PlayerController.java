@@ -10,25 +10,31 @@ import java.util.List;
 @Controller
 public class PlayerController {
 
-    private List<String> playersList = new ArrayList<>();
+    private static final String VIEW = "playerslist";
+    private static final String ATTRIBUTE_NAME = "players";
+    private final PlayerService service;
+
+    public PlayerController(PlayerService service) {
+        this.service = service;
+    }
 
     @GetMapping(value = "/display")
     public String findPlayers(Model model) {
-        model.addAttribute("players", playersList);
-        return "playerslist";
+        model.addAttribute(ATTRIBUTE_NAME, service.findAll());
+        return VIEW;
     }
 
     @PostMapping(value = "/add")
     public String addPlayer(@RequestParam String name, @RequestParam String surname, Model model) {
-        playersList.add(name + " " + surname);
-        model.addAttribute("players", playersList);
-        return "playerslist";
+        service.add(name, surname);
+        model.addAttribute(ATTRIBUTE_NAME, service.findAll());
+        return VIEW;
     }
 
     @PostMapping(value = "remove")
     public String removePlayer(@RequestParam String name, @RequestParam String surname, Model model) {
-        playersList.remove(name + " " + surname);
-        model.addAttribute("players", playersList);
-        return "playerslist";
+        service.remove(name, surname);
+        model.addAttribute(ATTRIBUTE_NAME, service.findAll());
+        return VIEW;
     }
 }
