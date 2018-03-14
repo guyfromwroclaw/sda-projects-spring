@@ -19,15 +19,15 @@ public class PlayerController {
     }
 
     @PostMapping(value = "/add")
-    public String addPlayer(@RequestParam String name, Model model) {
-        playersList.add(name);
+    public String addPlayer(@RequestParam String name, @RequestParam String surname, Model model) {
+        playersList.add(name + " " + surname);
         model.addAttribute("players", playersList);
         return "playerslist";
     }
 
     @PostMapping(value = "remove")
-    public String removePlayer(@RequestParam String name, Model model) {
-        playersList.remove(name);
+    public String removePlayer(@RequestParam String name, @RequestParam String surname, Model model) {
+        playersList.remove(name + " " + surname);
         model.addAttribute("players", playersList);
         return "playerslist";
     }
