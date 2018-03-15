@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/playerslist")
+@SessionAttributes("playerSession")
 public class PlayerController {
 
     private static final String VIEW = "playerslist";
@@ -28,13 +29,16 @@ public class PlayerController {
     }
 
     @PostMapping(value = "/form")
-    public String addPlayer(@Valid Player player, BindingResult result, Model model) {
+    public String addPlayer(@Valid Player player, BindingResult result, Model model, @ModelAttribute PlayerSession session
+    ) {
         if (result.hasErrors()) {
             model.addAttribute(ATTRIBUTE_NAME, service.findAll());
             return VIEW;
         }
 
         service.add(player);
+        session.setCounter(session.getCounter() + 1);
+        session.setRecentPlayer(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return "redirect:/" + VIEW + "/form";
     }
@@ -49,5 +53,10 @@ public class PlayerController {
     @ModelAttribute
     public Player defaultPlayer() {
         return new Player("name", "surname");
+    }
+
+    @ModelAttribute
+    public PlayerSession session() {
+        return new PlayerSession();
     }
 }

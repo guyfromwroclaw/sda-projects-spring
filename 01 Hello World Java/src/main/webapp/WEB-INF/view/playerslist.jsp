@@ -7,24 +7,36 @@
     <title>Players</title>
 </head>
 <body>
-<form:form method="post" modelAttribute="player" action="/playerslist/form">
-    <label><spring:message code="players.name"/><form:input path="name" type="text"/></label>
-    <label><spring:message code="players.surname"/><form:input path="surname" type="text"/></label>
-    <button type="submit" value="Add"><spring:message code="players.add"/></button><br>
-    <form:errors path="name"/><br>
-    <form:errors path="surname"/><br>
-</form:form>
-<table>
-    <tr>
-        <th><spring:message code="players.name"/></th>
-        <th><spring:message code="players.surname"/></th>
-    </tr>
-    <c:forEach items="${players}" var="player">
+<div>
+    <form:form method="post" modelAttribute="player" action="/playerslist/form">
+        <label><spring:message code="players.name"/><form:input path="name" type="text"/></label>
+        <label><spring:message code="players.surname"/><form:input path="surname" type="text"/></label>
+        <button type="submit" value="Add"><spring:message code="players.add"/></button>
+        <br>
+        <form:errors path="name"/><br>
+        <form:errors path="surname"/><br>
+    </form:form>
+</div>
+<div>
+    <c:if test="${playerSession.counter>0}">
+        <p>
+            <spring:message arguments="${playerSession.counter},${playerSession.recentPlayer}" code="players.info"/>
+        </p>
+    </c:if>
+</div>
+<div>
+    <table>
         <tr>
-            <td>${player.name}</td>
-            <td>${player.surname}</td>
+            <th><spring:message code="players.name"/></th>
+            <th><spring:message code="players.surname"/></th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach items="${players}" var="player">
+            <tr>
+                <td>${player.name}</td>
+                <td>${player.surname}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>
