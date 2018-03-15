@@ -24,7 +24,7 @@ public class PlayerControllerTest {
 
     @Test
     public void display() throws Exception {
-        MvcResult result = mvc.perform(get("/display"))
+        MvcResult result = mvc.perform(get("/playerslist/form"))
                 .andExpect(status().isOk()).andReturn();
 
         assertModelandViewName(result, VIEW, MODEL_KEY);
@@ -33,7 +33,7 @@ public class PlayerControllerTest {
 
     @Test
     public void add() throws Exception {
-        MvcResult result = mvc.perform(post("/add").
+        MvcResult result = mvc.perform(post("/playerslist/form").
                 param("name", PARAM_NAME).
                 param("surname", PARAM_SURNAME))
                 .andExpect(status().isOk()).andReturn();
@@ -45,7 +45,7 @@ public class PlayerControllerTest {
 
     @Test
     public void remove() throws Exception {
-        MvcResult result = mvc.perform(post("/remove")
+        MvcResult result = mvc.perform(post("/playerslist/remove")
                 .param("name", PARAM_NAME)
                 .param("surname", PARAM_SURNAME))
                 .andExpect(status().isOk()).andReturn();

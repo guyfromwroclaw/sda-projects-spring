@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/playerslist")
 public class PlayerController {
 
     private static final String VIEW = "playerslist";
@@ -18,23 +19,28 @@ public class PlayerController {
         this.service = service;
     }
 
-    @GetMapping(value = "/display")
+    @GetMapping(value = "/form")
     public String findPlayers(Model model) {
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return VIEW;
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/form")
     public String addPlayer(Player player, Model model) {
         service.add(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return VIEW;
     }
 
-    @PostMapping(value = "remove")
+    @PostMapping(value = "/remove")
     public String removePlayer(Player player, Model model) {
         service.remove(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return VIEW;
+    }
+
+    @ModelAttribute
+    public Player defaultPlayer() {
+        return new Player("name", "surname");
     }
 }
