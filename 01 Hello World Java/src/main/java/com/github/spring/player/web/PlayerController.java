@@ -1,5 +1,7 @@
-package com.github.spring.web;
+package com.github.spring.player.web;
 
+import com.github.spring.player.model.Player;
+import com.github.spring.player.service.PlayerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

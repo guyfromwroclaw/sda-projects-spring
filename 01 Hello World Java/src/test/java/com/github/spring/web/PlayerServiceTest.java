@@ -1,5 +1,7 @@
 package com.github.spring.web;
 
+import com.github.spring.player.model.Player;
+import com.github.spring.player.service.PlayerService;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

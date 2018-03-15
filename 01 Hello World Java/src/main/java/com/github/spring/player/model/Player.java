@@ -1,4 +1,4 @@
-package com.github.spring.web;
+package com.github.spring.player.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -6,10 +6,10 @@ import javax.validation.constraints.Size;
 public class Player {
 
     @NotBlank
-    @Size(max = 16)
+    @Size(min = 2, max = 16)
     private String name;
     @NotBlank
-    @Size(max = 16)
+    @Size(min = 2, max = 16)
     private String surname;
 
     public Player(String name, String surname) {

@@ -1,8 +1,7 @@
 package com.github.spring.config;
 
-import com.github.spring.web.HelloWorldController;
-import com.github.spring.web.PlayerController;
-import com.github.spring.web.PlayerService;
+import com.github.spring.player.web.PlayerController;
+import com.github.spring.player.service.PlayerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {HelloWorldController.class, PlayerService.class, PlayerController.class})
+@ComponentScan(basePackageClasses = {PlayerService.class, PlayerController.class})
 public class Config {
     @Bean
     public ViewResolver viewResolver() {

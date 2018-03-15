@@ -1,5 +1,8 @@
 package com.github.spring.web;
 
+import com.github.spring.player.model.Player;
+import com.github.spring.player.web.PlayerController;
+import com.github.spring.player.service.PlayerService;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
