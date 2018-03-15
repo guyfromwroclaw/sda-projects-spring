@@ -6,10 +6,10 @@ import javax.validation.constraints.Size;
 public class Player {
 
     @NotBlank
-    @Size(min = 2, max = 16)
+    @Size(max = 16)
     private String name;
     @NotBlank
-    @Size(min = 2, max = 16)
+    @Size(max = 16)
     private String surname;
 
     public Player(String name, String surname) {
