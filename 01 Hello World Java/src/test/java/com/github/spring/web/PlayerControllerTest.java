@@ -36,9 +36,9 @@ public class PlayerControllerTest {
         MvcResult result = mvc.perform(post("/playerslist/form").
                 param("name", PARAM_NAME).
                 param("surname", PARAM_SURNAME))
-                .andExpect(status().isOk()).andReturn();
+                .andExpect(status().is3xxRedirection()).andReturn();
 
-        assertModelandViewName(result, VIEW, MODEL_KEY);
+        assertModelandViewName(result, "redirect:/" + VIEW + "/form", MODEL_KEY);
         verify(service).findAll();
         verify(service).add(new Player("name", "surname"));
     }

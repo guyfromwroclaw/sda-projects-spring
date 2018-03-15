@@ -2,10 +2,10 @@ package com.github.spring.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/playerslist")
@@ -26,14 +26,19 @@ public class PlayerController {
     }
 
     @PostMapping(value = "/form")
-    public String addPlayer(Player player, Model model) {
+    public String addPlayer(@Valid Player player, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute(ATTRIBUTE_NAME, service.findAll());
+            return VIEW;
+        }
+
         service.add(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
-        return VIEW;
+        return "redirect:/" + VIEW + "/form";
     }
 
     @PostMapping(value = "/remove")
-    public String removePlayer(Player player, Model model) {
+    public String removePlayer(@Valid Player player, BindingResult result, Model model) {
         service.remove(player);
         model.addAttribute(ATTRIBUTE_NAME, service.findAll());
         return VIEW;

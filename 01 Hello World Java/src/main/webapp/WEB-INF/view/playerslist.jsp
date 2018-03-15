@@ -10,6 +10,8 @@
     <label>Name: <form:input path="name" type="text"/></label>
     <label>Surname: <form:input path="surname" type="text"/></label>
     <button type="submit" value="Add">Add</button>
+    <form:errors path="name"/>
+    <form:errors path="surname"/>
 </form:form>
 <table>
     <tr>
