@@ -35,7 +35,7 @@ public class Config implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("/WEB-INF/classes/Players");
+        messageSource.setBasenames("/WEB-INF/classes/Players","/WEB-INF/classes/Errors");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
