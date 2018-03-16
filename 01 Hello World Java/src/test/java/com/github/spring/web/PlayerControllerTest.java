@@ -5,6 +5,7 @@ import com.github.spring.player.web.PlayerController;
 import com.github.spring.player.service.PlayerService;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
+import org.springframework.context.MessageSource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -17,8 +18,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class PlayerControllerTest {
+    private final MessageSource messageSource = mock((MessageSource.class));
     private final PlayerService service = mock(PlayerService.class);
-    private final PlayerController controller = new PlayerController(service);
+    private final PlayerController controller = new PlayerController(service, messageSource);
     private final MockMvc mvc = standaloneSetup(controller).build();
     private static final String VIEW = "playerslist";
     private static final String MODEL_KEY = "players";

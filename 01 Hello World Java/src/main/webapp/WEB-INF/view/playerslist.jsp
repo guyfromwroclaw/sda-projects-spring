@@ -8,6 +8,7 @@
 </head>
 <body>
 <div>
+    <spring:message code="add.player.form"/><br>
     <form:form method="post" modelAttribute="player" action="/playerslist/form">
         <label><spring:message code="players.name"/><form:input path="name" type="text"/></label>
         <label><spring:message code="players.surname"/><form:input path="surname" type="text"/></label>
@@ -27,8 +28,8 @@
 <div>
     <table>
         <tr>
-            <th><spring:message code="players.name"/></th>
-            <th><spring:message code="players.surname"/></th>
+            <th><spring:message code="table.player.name"/></th>
+            <th><spring:message code="table.player.surname"/></th>
         </tr>
         <c:forEach items="${players}" var="player">
             <tr>
