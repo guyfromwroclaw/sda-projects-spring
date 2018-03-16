@@ -1,14 +1,21 @@
 package com.github.spring.player.entity;
 
-public class Player {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "player", catalog = "league")
+public class PlayerEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String surname;
 
-    public Player() {
+    public PlayerEntity() {
     }
 
-    public Player(Integer id, String name, String surname) {
+    public PlayerEntity(Integer id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;

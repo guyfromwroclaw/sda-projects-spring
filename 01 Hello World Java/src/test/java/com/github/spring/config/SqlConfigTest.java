@@ -1,6 +1,6 @@
 package com.github.spring.config;
 
-import com.github.spring.player.entity.Player;
+import com.github.spring.player.entity.PlayerEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +30,8 @@ public class SqlConfigTest {
     @Test
     public void selectAllPlayers() {
         NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(dataSource);
-        List<Player> players = template.query("SELECT * FROM player",
-                (rs, rowNum) -> new Player(rs.getInt("id"), rs.getString("name"), rs.getString("surname")));
+        List<PlayerEntity> players = template.query("SELECT * FROM player",
+                (rs, rowNum) -> new PlayerEntity(rs.getInt("id"), rs.getString("name"), rs.getString("surname")));
         assertThat(players).hasSize(2);
     }
 }
