@@ -1,5 +1,7 @@
 package com.github.spring.player.entity;
 
+import com.github.spring.team.entity.TeamEntity;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +11,13 @@ public class PlayerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
+
     private String surname;
+
+    @ManyToOne
+    private TeamEntity team;
 
     public PlayerEntity() {
     }
