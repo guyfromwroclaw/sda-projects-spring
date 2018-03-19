@@ -1,15 +1,18 @@
 package com.github.spring.web;
 
 import com.github.spring.player.model.Player;
+import com.github.spring.player.repository.PlayerRepository;
 import com.github.spring.player.service.PlayerService;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.mock;
 
 public class PlayerServiceTest {
 
-    private final PlayerService service = new PlayerService();
+    private final PlayerRepository repository = mock(PlayerRepository.class);
+    private final PlayerService service = new PlayerService(repository);
 
     @Test
     public void addThrowExceptionForNull() {
