@@ -33,6 +33,14 @@ public class PlayerEntity {
         this.surname = surname;
     }
 
+    public TeamEntity getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamEntity team) {
+        this.team = team;
+    }
+
     public Integer getId() {
         return id;
     }
